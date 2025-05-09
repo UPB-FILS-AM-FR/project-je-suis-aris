@@ -258,17 +258,13 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
 
 - [ESP32 Pinout and Configuration Guide](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)
 - [How to Use the L298N Motor Driver Module](https://lastminuteengineers.com/l298n-dc-stepper-driver-arduino-tutorial/)
-- [Servo Motor SG90 with Arduino](https://components101.com/motors/sg90-servo-motor)
 - [Ultrasonic Sensor HC-SR04 – How it Works & How to Use](https://randomnerdtutorials.com/complete-guide-for-ultrasonic-sensor-hc-sr04/)
-- [How to Power a Robot (Battery & Voltage Considerations)](https://www.robotshop.com/community/forum/t/robot-power-supplies-how-to-choose-the-right-one/13093)
-
+  
 ---
 
 ##### **Documentation officielle & fiches techniques**
 
 - [ESP32 Datasheet (Espressif)](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf)
-- [Arduino Reference – Digital and PWM Pins](https://www.arduino.cc/reference/en/)
-- [SG90 Servo Datasheet PDF](https://cdn.sparkfun.com/datasheets/Robotics/Standard%20Servo%20-%20SG90.pdf)
 - [L298N Motor Driver Datasheet](https://www.st.com/resource/en/datasheet/l298.pdf)
 - [HC-SR04 Sensor Datasheet](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
 
@@ -277,8 +273,5 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
 ##### **Articles scientifiques & applications robotiques**
 
 - [Low-cost Autonomous Vacuum Cleaner: A Hardware Perspective – ResearchGate](https://www.researchgate.net/publication/348364379_Low-cost_Autonomous_Vacuum_Cleaner_A_Hardware_Perspective)
-- [Design and Implementation of an Obstacle Avoiding Robot](https://www.ijser.org/researchpaper/Design-and-Implementation-of-Obstacle-Avoiding-Robot.pdf)
-- [Smart Vacuum Cleaners in IoT Ecosystem](https://ieeexplore.ieee.org/document/9565893)
-- [Embedded Systems in Robotics Applications – Overview](https://ieeexplore.ieee.org/document/8754793)
 
 </div>
