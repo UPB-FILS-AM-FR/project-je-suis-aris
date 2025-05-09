@@ -48,13 +48,13 @@ Ce projet combine électronique embarquée, programmation Arduino et robotique p
 ### DIAGRAMME FONCTIONNEL
 
 <p align="center">
-  <img src="schematics/block_diagram.png" alt="Diagramme fonctionnel" width="600">
+  <img src="schematic_block.png" alt="Diagramme fonctionnel" width="600">
 </p>
 
 ### SCHÉMA ÉLECTRIQUE
 
 <p align="center">
-  <img src="schematics/kicad_schematic.png" alt="Schéma électrique" width="600">
+  <img src="schematic_Neto_BOT.png" alt="Schéma électrique" width="600">
 </p>
 
 ---
