@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="Néto BOT Logo" width="180">
+  <img src="logo.png" alt="Néto BOT Logo" width="180">
 </p>
 
 <h1 align="center">Néto BOT – Robot de nettoyage autonome</h1>
