@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center"><strong>Néto BOT</strong></h1>
-<h3 align="center" style="color: gray; font-weight: normal;">robot de nettoyage autonome</h3>
+<h3 align="center" style="color: gray; font-weight: normal;">- système de nettoyage intelligent à navigation autonome -</h3>
 
 <p align="center">
   <strong>Auteur :</strong> Aris-Georgian ILIE &nbsp;|&nbsp; 
@@ -30,7 +30,7 @@
 ## <span style="color:gray;">DESCRIPTION</span>
 
 <p align="justify">
-Néto BOT est un robot autonome conçu pour détecter les obstacles et effectuer le nettoyage de surfaces planes. Il utilise des capteurs à ultrasons, un système de pulvérisation d’eau, et une structure motorisée commandée par microcontrôleur.
+Néto BOT est un robot aspirateur autonome contrôlé par un microcontrôleur ESP32. Il est conçu pour détecter les obstacles à l’aide d’un capteur à ultrasons monté sur un servomoteur, et contourner automatiquement ces obstacles en adaptant sa trajectoire. Il est équipé d’un système de ventilation assurant l’aspiration des poussières et peut être commandé soit en mode automatique, soit manuellement via une interface Wi-Fi. Tous les composants matériels - L298N, moteurs, ventilateurs, batteries - sont intégrés sur une structure mobile légère et modulaire, optimisée pour les surfaces planes intérieures.
 </p>
 
 ---
@@ -38,7 +38,7 @@ Néto BOT est un robot autonome conçu pour détecter les obstacles et effectuer
 ## <span style="color:gray;">MOTIVATION</span>
 
 <p align="justify">
-Ce projet combine électronique embarquée, programmation Arduino et robotique pratique, pour créer un robot utile, efficace et éducatif, tout en explorant les défis liés à l’automatisation mobile.
+Le projet s’inscrit dans une démarche d’apprentissage appliqué de la robotique domestique et de l’IoT. Il vise à reproduire à moindre coût le fonctionnement des robots aspirateurs commerciaux, en utilisant des composants standards accessibles. Ce robot permet d’explorer la logique de navigation autonome, les systèmes embarqués et la communication Wi-Fi en vue d’un pilotage ou d’un retour d’état à distance. C’est un projet éducatif polyvalent, à forte valeur d’expérimentation.
 </p>
 
 ---
@@ -51,11 +51,22 @@ Ce projet combine électronique embarquée, programmation Arduino et robotique p
   <img src="schematic_block.png" alt="Diagramme fonctionnel" width="600">
 </p>
 
+<p align="justify">
+Le <strong>diagramme fonctionnel</strong> illustre de manière abstraite l'organisation logique du système. Il met en évidence les principales fonctions du robot ainsi que les flux d'information entre les composants. Ce schéma est essentiel pour comprendre la répartition des rôles au sein du robot et la manière dont les différents modules interagissent pour remplir la tâche de nettoyage autonome.
+</p>
+
+---
+
 ### SCHÉMA ÉLECTRIQUE
 
 <p align="center">
   <img src="schematic_Neto_BOT.png" alt="Schéma électrique" width="600">
 </p>
+
+<p align="justify">
+Le <strong>schéma électrique</strong> représente le câblage réel de l’ensemble des composants du robot, incluant les connexions entre l’ESP32, les moteurs, le module L298N, les capteurs, les alimentations et les ventilateurs. Il permet de visualiser avec précision comment les signaux et l’énergie circulent dans le circuit. Ce schéma est fondamental pour le montage physique du robot et sert de référence lors du prototypage, du dépannage ou de la reproduction du projet.
+</p>
+
 
 ---
 
@@ -200,14 +211,9 @@ Ce projet combine électronique embarquée, programmation Arduino et robotique p
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home">NewPing</a></td>
-      <td align="justify">Bibliothèque légère et rapide permettant d’utiliser efficacement les capteurs à ultrasons HC-SR04 sans bloquer le microcontrôleur.</td>
-      <td align="justify">Mesure précise des distances à l’aide des capteurs à ultrasons, utilisée pour la détection d’obstacles et la navigation autonome.</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.arduino.cc/en/Reference/LiquidCrystal">LiquidCrystal</a></td>
-      <td align="justify">Bibliothèque native Arduino permettant le contrôle des écrans LCD alphanumériques 16x2 ou 20x4 à base de contrôleur HD44780.</td>
-      <td align="justify">Affichage en temps réel des messages, alertes et états internes du robot.</td>
+      <td><a href="https://github.com/espressif/arduino-esp32">ESP32 WiFi</a></td>
+      <td align="justify">Librairie officielle ESP32 pour gérer la connectivité Wi-Fi, les sockets TCP, UDP, et les serveurs HTTP.</td>
+      <td align="justify">Utilisée pour établir une connexion à un réseau local et permettre la commande du robot via interface Web embarquée.</td>
     </tr>
   </tbody>
 </table>
@@ -220,17 +226,16 @@ Ce projet combine électronique embarquée, programmation Arduino et robotique p
 
 <div align="justify">
 
-### Semaine 6 – 12 Mai
-- Assemblage du châssis  
-- Test des moteurs avec le pilote L298N
+#### Semaine 6 – 12 Mai
+- Assemblage du châssis mobile  
+- Installation des moteurs DC et test avec L298N  
+- Implémentation du système d’alimentation à base de batteries AA
 
-### Semaine 7 – 19 Mai
-- Intégration des capteurs à ultrasons  
-- Début du système de détection d’obstacles
+#### Semaine 7 – 19 Mai
 
-### Semaine 20 – 26 Mai
-- Calibration de la pompe à eau  
-- Tests en environnement réel
+
+#### Semaine 20 – 26 Mai
+
 
 </div>
 
@@ -240,8 +245,40 @@ Ce projet combine électronique embarquée, programmation Arduino et robotique p
 
 <div align="justify">
 
-- [Tutoriel capteurs – Ben Eater](https://www.youtube.com/watch?v=wdgULBpRoXk)  
-- [Article sur les moteurs – ExplainThatStuff](https://www.explainthatstuff.com/induction-motors.html)  
-- [Arduino Project Hub](https://projecthub.arduino.cc/)
+##### **Vidéos de projets similaires**
+
+- [Autonomous Vacuum Cleaner DIY Project – How It Works](https://www.youtube.com/watch?v=iOrvGC9REEE)
+- [Robot Aspirateur fait maison (système complet)](https://www.youtube.com/watch?v=n8C8cyyUXuY)
+- [Build an Obstacle Avoiding Robot Using Arduino and Ultrasonic](https://www.youtube.com/watch?v=UU7VVbEZulw)
+- [#vacuumcleanerscienceproject (inspirations scientifiques)](https://www.youtube.com/watch?v=hHIIWpZcYNs&pp=ygUcI3ZhY2N1bWNsZWFuZXJzY2llbmNlcHJvamVjdA%3D%3D)
+
+---
+
+##### **Tutoriels techniques (composants)**
+
+- [ESP32 Pinout and Configuration Guide](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)
+- [How to Use the L298N Motor Driver Module](https://lastminuteengineers.com/l298n-dc-stepper-driver-arduino-tutorial/)
+- [Servo Motor SG90 with Arduino](https://components101.com/motors/sg90-servo-motor)
+- [Ultrasonic Sensor HC-SR04 – How it Works & How to Use](https://randomnerdtutorials.com/complete-guide-for-ultrasonic-sensor-hc-sr04/)
+- [How to Power a Robot (Battery & Voltage Considerations)](https://www.robotshop.com/community/forum/t/robot-power-supplies-how-to-choose-the-right-one/13093)
+
+---
+
+##### **Documentation officielle & fiches techniques**
+
+- [ESP32 Datasheet (Espressif)](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf)
+- [Arduino Reference – Digital and PWM Pins](https://www.arduino.cc/reference/en/)
+- [SG90 Servo Datasheet PDF](https://cdn.sparkfun.com/datasheets/Robotics/Standard%20Servo%20-%20SG90.pdf)
+- [L298N Motor Driver Datasheet](https://www.st.com/resource/en/datasheet/l298.pdf)
+- [HC-SR04 Sensor Datasheet](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
+
+---
+
+##### **Articles scientifiques & applications robotiques**
+
+- [Low-cost Autonomous Vacuum Cleaner: A Hardware Perspective – ResearchGate](https://www.researchgate.net/publication/348364379_Low-cost_Autonomous_Vacuum_Cleaner_A_Hardware_Perspective)
+- [Design and Implementation of an Obstacle Avoiding Robot](https://www.ijser.org/researchpaper/Design-and-Implementation-of-Obstacle-Avoiding-Robot.pdf)
+- [Smart Vacuum Cleaners in IoT Ecosystem](https://ieeexplore.ieee.org/document/9565893)
+- [Embedded Systems in Robotics Applications – Overview](https://ieeexplore.ieee.org/document/8754793)
 
 </div>
