@@ -194,44 +194,171 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
 
 <div align="justify">
 
-#### Semaine 6 – 12 Mai
+#### Semaine 1 – 12 Mai
 
 <table>
   <tr>
     <td style="width: 45%;"><img src="faza1.jpg" alt="Phase 1" style="width:100%; border-radius:8px;"></td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
-      La première étape a consisté à fixer les roues sur la plaque de base du robot. J’ai percé les trous nécessaires pour faire passer les fils des moteurs. Ensuite, j’ai connecté les moteurs aux deux pilotes de moteur L298N : un pour les roues avant et un pour les roues arrière. Chaque pilote a été relié à la carte ESP32 afin d’assurer le contrôle complet de la mobilité.
+      La première étape a consisté à fixer les roues sur la plaque de base du robot. J’ai percé les trous nécessaires pour faire passer les fils des moteurs. Ensuite, j’ai connecté les moteurs aux deux pilotes de moteur L298N: un pour les roues avant et un pour les roues arrière. Chaque pilote a été relié à la carte ESP32 afin d’assurer le contrôle complet de la mobilité.
     </td>
   </tr>
   <tr>
     <td style="vertical-align:top; text-align:justify; padding-right:15px;">
-      Dans la deuxième étape, j’ai ajouté une breadboard sur la base pour faciliter les connexions électriques. J’ai également vissé quatre longues entretoises qui serviront à soutenir un second niveau. Ce deuxième étage accueillera le système d’alimentation (piles) ainsi que le système d’aspiration.
+      Dans la deuxième étape, j’ai ajouté une breadboard sur la base pour faciliter les connexions électriques. J’ai également vissé quatre longues vis qui serviront à soutenir un second niveau. Ce deuxième étage accueillera le système d’alimentation -  les piles, ainsi que le système d’aspiration.
     </td>
     <td style="width: 45%;"><img src="faza2.jpg" alt="Phase 2" style="width:100%; border-radius:8px;"></td>
   </tr>
   <tr>
     <td style="width: 45%;"><img src="faza3.jpg" alt="Phase 3" style="width:100%; border-radius:8px;"></td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
-      La troisième photo montre le montage du deuxième niveau du robot. J’y ai fixé un servomoteur sur lequel j’ai installé un capteur à ultrasons grâce à une platine spéciale en plastique. Cette configuration permet la rotation du capteur pour effectuer des balayages angulaires en mode autonome.
+      La troisième photo montre le montage du deuxième niveau du robot. J’y ai fixé un servomoteur sur lequel j’ai installé un capteur à ultrasons grâce à un support spécial en plastique. Cette configuration permet la rotation du capteur pour effectuer des balayages angulaires en mode autonome.
     </td>
   </tr>
   <tr>
     <td style="vertical-align:top; text-align:justify; padding-right:15px;">
-      À ce stade avancé, comme on le voit sur la quatrième image, j’ai ajouté un troisième pilote L298N dédié au contrôle des deux ventilateurs. Les connexions nécessaires avec la breadboard ont été effectuées pour distribuer l’alimentation à partir de deux packs de six piles AA. En plus, une batterie externe a été fixée sous la base du robot à l’aide de ressorts, fournissant du courant à la breadboard via un régulateur 5V.
+      À ce stade avancé, comme on le voit sur la quatrième image, j’ai ajouté un troisième pilote L298N dédié au contrôle des deux ventilateurs. Les connexions nécessaires avec la breadboard ont été effectuées pour distribuer l’alimentation à partir des deux supports de six piles AA. En plus, une batterie externe a été fixée sous la base du robot à l’aide de câbles, fournissant du courant de 5V à la breadboard.
     </td>
     <td style="width: 45%;"><img src="faza4.jpg" alt="Phase 4" style="width:100%; border-radius:8px;"></td>
   </tr>
   <tr>
     <td style="width: 45%;"><img src="faza5.jpg" alt="Phase 5" style="width:100%; border-radius:8px;"></td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
-      La cinquième photo présente l’état final du robot. Le système d’aspiration imprimé en 3D a été installé : il comprend deux ventilateurs internes connectés au circuit, ainsi qu’un filtre à poussière visible sur l’image. Deux supports de batteries ont également été ajoutés, et tous les circuits ont été finalisés, avec les composants correctement branchés et fixés. Le robot est maintenant prêt à fonctionner.
+      La cinquième photo présente l’état final du robot. Le système d’aspiration imprimé en 3D a été installé: il comprend les deux ventilateurs internes connectés au circuit, ainsi qu’un filtre à poussière visible sur l’image. Les deux supports de batteries ont également été ajoutés et tous les circuits ont été finalisés, avec les composants correctement branchés et fixés. Le robot est maintenant prêt à être programmé.
     </td>
   </tr>
 </table>
 
 #### Semaine 13 – 19 Mai
 
-<!-- À compléter -->
+<p align="justify">
+Cette deuxième semaine de travail a été dédiée à la programmation complète du robot. J’ai intégré tous les composants matériels à travers un code structuré et optimisé. L’objectif a été de garantir un fonctionnement fluide en mode manuel et autonome, tout en développant une interface web intuitive pour piloter le robot. De nombreux tests ont été réalisés pour s'assurer de la robustesse du système.
+</p>
+
+<table>
+  <tr>
+    <td style="width: 45%;"><pre><code>// Déclaration des bibliothèques
+#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+#include &lt;ESP32Servo.h&gt;
+
+// Définition du réseau Wi-Fi
+const char* ssid = "TP-Link_235C";
+const char* password = "60318244";</code></pre></td>
+    <td style="vertical-align:top; text-align:justify; padding-left:15px;">
+      La première étape du code consiste à inclure les bibliothèques nécessaires à la communication Wi-Fi, au serveur web embarqué et au contrôle du servomoteur. Ces éléments sont essentiels pour interagir avec le robot à distance.
+    </td>
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top; text-align:justify; padding-right:15px;">
+      Cette section configure les broches GPIO utilisées pour contrôler les moteurs avant et arrière, les ventilateurs, le capteur à ultrasons et le servomoteur. Toutes les broches ont été choisies en fonction du câblage réel.
+    </td>
+    <td style="width: 45%;"><pre><code>// Broches moteurs avant
+const int motorFataA1 = 26;
+const int motorFataA2 = 15;
+...
+// Servomoteur
+Servo servoBaza;
+const int servoBazaPin = 12;
+...
+// Capteur ultrasons
+const int trigPin = 5;
+const int echoPin = 13;</code></pre></td>
+  </tr>
+
+  <tr>
+    <td style="width: 45%;"><pre><code>void setup() {
+  Serial.begin(115200);
+  pinMode(motorFataA1, OUTPUT);
+  ...
+  servoBaza.attach(servoBazaPin);
+  servoBaza.write(90);
+  WiFi.begin(ssid, password);
+  ...
+  server.begin();
+}</code></pre></td>
+    <td style="vertical-align:top; text-align:justify; padding-left:15px;">
+      La fonction <code>setup()</code> initialise tous les composants matériels du robot (broches, servomoteur, capteur, ventilateurs) et établit la connexion au réseau Wi-Fi. Elle démarre aussi le serveur web, rendant le robot accessible à distance.
+    </td>
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top; text-align:justify; padding-right:15px;">
+      Les fonctions suivantes contrôlent les moteurs pour avancer, reculer ou tourner. Chaque commande utilise le PWM pour moduler la vitesse et les signaux logiques pour orienter le courant vers les moteurs.
+    </td>
+    <td style="width: 45%;"><pre><code>void mersInainte() {
+  int vitezaPWM = vitezaMotoare * 255;
+  analogWrite(motorFataA_EN, vitezaPWM);
+  digitalWrite(motorFataA1, LOW);
+  digitalWrite(motorFataA2, HIGH);
+  ...
+}</code></pre></td>
+  </tr>
+
+  <tr>
+    <td style="width: 45%;"><pre><code>long masoareDistanta() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  long durata = pulseIn(echoPin, HIGH, 30000);
+  ...
+  return distantaCalculata;
+}</code></pre></td>
+    <td style="vertical-align:top; text-align:justify; padding-left:15px;">
+      Cette fonction est essentielle pour la navigation autonome. Elle mesure la distance entre le robot et un obstacle en utilisant le capteur à ultrasons. Si la distance est inférieure à un seuil, le robot adapte son comportement.
+    </td>
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top; text-align:justify; padding-right:15px;">
+      La fonction suivante gère tous les comportements du robot en mode autonome. Elle lit les distances mesurées dans plusieurs directions et prend des décisions comme avancer, tourner ou reculer.
+    </td>
+    <td style="width: 45%;"><pre><code>void gestionModAutonom() {
+  long distantaCurenta = masoareDistanta();
+  if (distantaCurenta &lt; 15) {
+    stareAutonoma = MERS_INAPOI;
+  } else {
+    ...
+  }
+}</code></pre></td>
+  </tr>
+
+  <tr>
+    <td style="width: 45%;"><pre><code>server.on("/", HTTP_GET, []() {
+  String html = "&lt;html&gt;&lt;head&gt;...&lt;/head&gt;&lt;body&gt;";
+  html += "Interface web avec joystick, boutons, distance...";
+  server.send(200, "text/html", html);
+});</code></pre></td>
+    <td style="vertical-align:top; text-align:justify; padding-left:15px;">
+      Le cœur de l’interface web est défini ici. Cette page est générée dynamiquement par l’ESP32 et contient toutes les commandes interactives : changement de mode, contrôle du robot, affichage de la distance et des vitesses.
+    </td>
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top; text-align:justify; padding-right:15px;">
+      La boucle principale du programme est très simple. Elle vérifie régulièrement la distance détectée et exécute <code>gestionModAutonom()</code> si le mode autonome est actif.
+    </td>
+    <td style="width: 45%;"><pre><code>void loop() {
+  server.handleClient();
+  if (millis() - ultimaMasurareDistanta &gt;= intervalMasurare) {
+    distanta = masoareDistanta();
+  }
+  if (modAutonom) {
+    gestionModAutonom();
+  }
+}</code></pre></td>
+  </tr>
+
+  <tr>
+    <td style="width: 45%;"><img src="site.jpg" alt="Interface Web" style="width:100%; border-radius:8px;"></td>
+    <td style="vertical-align:top; text-align:justify; padding-left:15px;">
+      Voici une capture de l’interface Web développée. L’utilisateur peut y activer les ventilateurs, faire tourner le capteur à ultrasons, régler la vitesse des moteurs ou déplacer le robot avec un joystick virtuel.
+    </td>
+  </tr>
+</table>
 
 #### Semaine 20 – 26 Mai
 
