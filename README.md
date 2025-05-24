@@ -229,6 +229,23 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
   </tr>
 </table>
 
+<!-- Ajout des images 3D du système d'aspiration -->
+<div style="margin-top:25px;">
+  <table style="width:100%; text-align:center;">
+    <tr>
+      <td><img src="3d_1.jpg" alt="Vue 3D 1" style="width:95%; border-radius:8px;"></td>
+      <td><img src="3d_2.jpg" alt="Vue 3D 2" style="width:95%; border-radius:8px;"></td>
+      <td><img src="3d_3.jpg" alt="Vue 3D 3" style="width:95%; border-radius:8px;"></td>
+    </tr>
+    <tr>
+      <td colspan="3" style="padding-top:10px; text-align:justify;">
+        Les images ci-dessus représentent le modèle 3D du système d’aspiration conçu dans le logiciel SOLIDWORKS. Ce système est composé de trois pièces principales conçues pour s’assembler facilement. La première pièce est le tuyau incurvé chargé de l’aspiration de l’air, dans lequel est intégré le premier ventilateur. La deuxième pièce est une chambre centrale qui stocke la poussière; elle contient également le deuxième ventilateur et dispose d’une ouverture conçue pour permettre la dépressurisation de l’air. Enfin, la troisième pièce est un couvercle esthétique, gravé du nom du robot « Néto BOT », qui vient se fixer sur le dessus de la chambre.
+      </td>
+    </tr>
+  </table>
+</div>
+
+
 #### Semaine 13 – 19 Mai
 
 <p align="justify">
@@ -243,8 +260,8 @@ Cette deuxième semaine de travail a été dédiée à la programmation complèt
 #include &lt;WebServer.h&gt;<br>
 #include &lt;ESP32Servo.h&gt;<br><br>
 // Réseau Wi-Fi<br>
-const char* ssid = "TP-Link_235C";<br>
-const char* password = "60318244";
+const char* ssid = "TP-Link_XXXXX";<br>
+const char* password = "XXXXXXX";
     </td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
       La première étape du code consiste à inclure les bibliothèques nécessaires à la communication Wi-Fi, au serveur web embarqué et au contrôle du servomoteur. Ces éléments sont essentiels pour interagir avec le robot à distance.
@@ -283,7 +300,7 @@ void setup() {<br>
 
   <tr>
     <td style="vertical-align:top; text-align:justify; padding-right:15px;">
-      Ces fonctions contrôlent les déplacements : avant, arrière, gauche, droite. Elles utilisent le PWM pour la vitesse et les sorties logiques pour la direction.
+      Ces fonctions contrôlent les déplacements: avant, arrière, gauche, droite. Elles utilisent le PWM pour la vitesse et les sorties logiques pour la direction.
     </td>
     <td style="width: 45%; font-family: monospace; background-color:#f4f4f4; padding:10px; border-radius:6px; word-wrap: break-word;">
 void mersInainte() {<br>
@@ -358,16 +375,16 @@ void loop() {<br>
   <tr>
     <td style="width: 45%;"><img src="site.png" alt="Interface Web" style="width:100%; border-radius:8px;"></td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
-      Voici la capture de l’interface Web développée. Elle regroupe toutes les commandes nécessaires pour interagir avec le robot : joystick, boutons pour les ventilateurs, indicateur de distance et réglage de la vitesse.
+      L’interface web du robot « NÉTO BOT » permet un contrôle complet et intuitif. Elle comprend un bouton pour basculer entre les modes manuel et autonome, un affichage de la distance en temps réel avec un radar visuel, un joystick pour la navigation manuelle, des boutons pour activer ou désactiver les ventilateurs, ainsi que deux curseurs pour ajuster la vitesse des moteurs et l’orientation du capteur à ultrasons.
     </td>
   </tr>
 </table>
 
 #### Semaine 20 – 26 Mai
 
-<!-- À compléter -->
-
-</div>
+<p align="justify">
+Durant cette dernière semaine, je me suis concentré sur la documentation complète du projet. J’ai mis à jour la page GitHub dédiée au robot, en y ajoutant l’ensemble des fichiers nécessaires ainsi que des explications claires sur le fonctionnement du système. J’ai également veillé à structurer la documentation de manière cohérente, en détaillant toutes les étapes importantes de développement et les jalons atteints au cours du projet. L’objectif était de garantir que toute personne consultant le projet puisse comprendre son évolution, sa logique de conception, ainsi que les choix techniques effectués.
+</p>
 
 ---
 
