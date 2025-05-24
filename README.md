@@ -235,16 +235,17 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
 Cette deuxième semaine de travail a été dédiée à la programmation complète du robot. J’ai intégré tous les composants matériels à travers un code structuré et optimisé. L’objectif a été de garantir un fonctionnement fluide en mode manuel et autonome, tout en développant une interface web intuitive pour piloter le robot. De nombreux tests ont été réalisés pour s'assurer de la robustesse du système.
 </p>
 
-<table>
+<table style="width:100%; table-layout: fixed;">
   <tr>
-    <td style="width: 45%;"><pre><code>// Déclaration des bibliothèques
-#include &lt;WiFi.h&gt;
-#include &lt;WebServer.h&gt;
-#include &lt;ESP32Servo.h&gt;
-
-// Définition du réseau Wi-Fi
-const char* ssid = "TP-Link_235C";
-const char* password = "60318244";</code></pre></td>
+    <td style="width: 45%; font-family: monospace; background-color:#f4f4f4; padding:10px; border-radius:6px; word-wrap: break-word;">
+// Déclaration des bibliothèques<br>
+#include &lt;WiFi.h&gt;<br>
+#include &lt;WebServer.h&gt;<br>
+#include &lt;ESP32Servo.h&gt;<br><br>
+// Réseau Wi-Fi<br>
+const char* ssid = "TP-Link_235C";<br>
+const char* password = "60318244";
+    </td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
       La première étape du code consiste à inclure les bibliothèques nécessaires à la communication Wi-Fi, au serveur web embarqué et au contrôle du servomoteur. Ces éléments sont essentiels pour interagir avec le robot à distance.
     </td>
@@ -252,110 +253,112 @@ const char* password = "60318244";</code></pre></td>
 
   <tr>
     <td style="vertical-align:top; text-align:justify; padding-right:15px;">
-      Cette section configure les broches GPIO utilisées pour contrôler les moteurs avant et arrière, les ventilateurs, le capteur à ultrasons et le servomoteur. Toutes les broches ont été choisies en fonction du câblage réel.
+      Cette section configure les broches GPIO utilisées pour les moteurs, ventilateurs, capteurs et servomoteur. Chaque broche est adaptée à l’architecture physique du robot.
     </td>
-    <td style="width: 45%;"><pre><code>// Broches moteurs avant
-const int motorFataA1 = 26;
-const int motorFataA2 = 15;
-...
-// Servomoteur
-Servo servoBaza;
-const int servoBazaPin = 12;
-...
-// Capteur ultrasons
-const int trigPin = 5;
-const int echoPin = 13;</code></pre></td>
+    <td style="width: 45%; font-family: monospace; background-color:#f4f4f4; padding:10px; border-radius:6px; word-wrap: break-word;">
+// Broches des moteurs<br>
+const int motorFataA1 = 26;<br>
+const int motorFataA2 = 15;<br>
+...<br>
+// Capteur ultrasons<br>
+const int trigPin = 5;<br>
+const int echoPin = 13;
+    </td>
   </tr>
 
   <tr>
-    <td style="width: 45%;"><pre><code>void setup() {
-  Serial.begin(115200);
-  pinMode(motorFataA1, OUTPUT);
-  ...
-  servoBaza.attach(servoBazaPin);
-  servoBaza.write(90);
-  WiFi.begin(ssid, password);
-  ...
-  server.begin();
-}</code></pre></td>
+    <td style="width: 45%; font-family: monospace; background-color:#f4f4f4; padding:10px; border-radius:6px; word-wrap: break-word;">
+void setup() {<br>
+  Serial.begin(115200);<br>
+  pinMode(motorFataA1, OUTPUT);<br>
+  ...<br>
+  WiFi.begin(ssid, password);<br>
+  server.begin();<br>
+}
+    </td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
-      La fonction <code>setup()</code> initialise tous les composants matériels du robot (broches, servomoteur, capteur, ventilateurs) et établit la connexion au réseau Wi-Fi. Elle démarre aussi le serveur web, rendant le robot accessible à distance.
+      La fonction <code>setup()</code> initialise tous les composants matériels et connecte le robot au Wi-Fi. Elle prépare également le serveur pour recevoir des requêtes HTTP.
     </td>
   </tr>
 
   <tr>
     <td style="vertical-align:top; text-align:justify; padding-right:15px;">
-      Les fonctions suivantes contrôlent les moteurs pour avancer, reculer ou tourner. Chaque commande utilise le PWM pour moduler la vitesse et les signaux logiques pour orienter le courant vers les moteurs.
+      Ces fonctions contrôlent les déplacements : avant, arrière, gauche, droite. Elles utilisent le PWM pour la vitesse et les sorties logiques pour la direction.
     </td>
-    <td style="width: 45%;"><pre><code>void mersInainte() {
-  int vitezaPWM = vitezaMotoare * 255;
-  analogWrite(motorFataA_EN, vitezaPWM);
-  digitalWrite(motorFataA1, LOW);
-  digitalWrite(motorFataA2, HIGH);
-  ...
-}</code></pre></td>
+    <td style="width: 45%; font-family: monospace; background-color:#f4f4f4; padding:10px; border-radius:6px; word-wrap: break-word;">
+void mersInainte() {<br>
+  int vitezaPWM = vitezaMotoare * 255;<br>
+  analogWrite(motorFataA_EN, vitezaPWM);<br>
+  digitalWrite(motorFataA1, LOW);<br>
+  digitalWrite(motorFataA2, HIGH);<br>
+  ...<br>
+}
+    </td>
   </tr>
 
   <tr>
-    <td style="width: 45%;"><pre><code>long masoareDistanta() {
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  long durata = pulseIn(echoPin, HIGH, 30000);
-  ...
-  return distantaCalculata;
-}</code></pre></td>
+    <td style="width: 45%; font-family: monospace; background-color:#f4f4f4; padding:10px; border-radius:6px; word-wrap: break-word;">
+long masoareDistanta() {<br>
+  digitalWrite(trigPin, LOW);<br>
+  delayMicroseconds(2);<br>
+  digitalWrite(trigPin, HIGH);<br>
+  delayMicroseconds(10);<br>
+  digitalWrite(trigPin, LOW);<br>
+  long durata = pulseIn(echoPin, HIGH, 30000);<br>
+  ...<br>
+}
+    </td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
-      Cette fonction est essentielle pour la navigation autonome. Elle mesure la distance entre le robot et un obstacle en utilisant le capteur à ultrasons. Si la distance est inférieure à un seuil, le robot adapte son comportement.
+      Cette fonction lit les distances avec le capteur à ultrasons. Elle est utilisée pour la détection d'obstacles et pour ajuster automatiquement le comportement du robot.
     </td>
   </tr>
 
   <tr>
     <td style="vertical-align:top; text-align:justify; padding-right:15px;">
-      La fonction suivante gère tous les comportements du robot en mode autonome. Elle lit les distances mesurées dans plusieurs directions et prend des décisions comme avancer, tourner ou reculer.
+      La logique autonome repose sur cette fonction. Elle déclenche des virages ou reculs en fonction des obstacles détectés à l’avant, à gauche ou à droite.
     </td>
-    <td style="width: 45%;"><pre><code>void gestionModAutonom() {
-  long distantaCurenta = masoareDistanta();
-  if (distantaCurenta &lt; 15) {
-    stareAutonoma = MERS_INAPOI;
-  } else {
-    ...
-  }
-}</code></pre></td>
+    <td style="width: 45%; font-family: monospace; background-color:#f4f4f4; padding:10px; border-radius:6px; word-wrap: break-word;">
+void gestionModAutonom() {<br>
+  if (distanta &lt; 15) {<br>
+    stareAutonoma = MERS_INAPOI;<br>
+  } else {<br>
+    ...<br>
+  }<br>
+}
+    </td>
   </tr>
 
   <tr>
-    <td style="width: 45%;"><pre><code>server.on("/", HTTP_GET, []() {
-  String html = "&lt;html&gt;&lt;head&gt;...&lt;/head&gt;&lt;body&gt;";
-  html += "Interface web avec joystick, boutons, distance...";
-  server.send(200, "text/html", html);
-});</code></pre></td>
+    <td style="width: 45%; font-family: monospace; background-color:#f4f4f4; padding:10px; border-radius:6px; word-wrap: break-word;">
+server.on("/", HTTP_GET, []() {<br>
+  String html = "&lt;html&gt;...&lt;/html&gt;";<br>
+  server.send(200, "text/html", html);<br>
+});
+    </td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
-      Le cœur de l’interface web est défini ici. Cette page est générée dynamiquement par l’ESP32 et contient toutes les commandes interactives : changement de mode, contrôle du robot, affichage de la distance et des vitesses.
+      Cette partie génère dynamiquement l'interface Web. Elle permet de piloter le robot via Wi-Fi, d’afficher la distance détectée et de modifier la vitesse ou l’orientation.
     </td>
   </tr>
 
   <tr>
     <td style="vertical-align:top; text-align:justify; padding-right:15px;">
-      La boucle principale du programme est très simple. Elle vérifie régulièrement la distance détectée et exécute <code>gestionModAutonom()</code> si le mode autonome est actif.
+      La boucle principale met à jour la distance mesurée et appelle <code>gestionModAutonom()</code> si le robot est en mode autonome. Elle traite également les requêtes du serveur.
     </td>
-    <td style="width: 45%;"><pre><code>void loop() {
-  server.handleClient();
-  if (millis() - ultimaMasurareDistanta &gt;= intervalMasurare) {
-    distanta = masoareDistanta();
-  }
-  if (modAutonom) {
-    gestionModAutonom();
-  }
-}</code></pre></td>
+    <td style="width: 45%; font-family: monospace; background-color:#f4f4f4; padding:10px; border-radius:6px; word-wrap: break-word;">
+void loop() {<br>
+  server.handleClient();<br>
+  if (millis() - ultimaMasurareDistanta &gt;= intervalMasurare) {<br>
+    distanta = masoareDistanta();<br>
+  }<br>
+  if (modAutonom) gestionModAutonom();<br>
+}
+    </td>
   </tr>
 
   <tr>
     <td style="width: 45%;"><img src="site.jpg" alt="Interface Web" style="width:100%; border-radius:8px;"></td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
-      Voici une capture de l’interface Web développée. L’utilisateur peut y activer les ventilateurs, faire tourner le capteur à ultrasons, régler la vitesse des moteurs ou déplacer le robot avec un joystick virtuel.
+      Voici la capture de l’interface Web développée. Elle regroupe toutes les commandes nécessaires pour interagir avec le robot : joystick, boutons pour les ventilateurs, indicateur de distance et réglage de la vitesse.
     </td>
   </tr>
 </table>
