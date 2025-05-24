@@ -356,7 +356,7 @@ void loop() {<br>
   </tr>
 
   <tr>
-    <td style="width: 45%;"><img src="site.jpg" alt="Interface Web" style="width:100%; border-radius:8px;"></td>
+    <td style="width: 45%;"><img src="site.png" alt="Interface Web" style="width:100%; border-radius:8px;"></td>
     <td style="vertical-align:top; text-align:justify; padding-left:15px;">
       Voici la capture de l’interface Web développée. Elle regroupe toutes les commandes nécessaires pour interagir avec le robot : joystick, boutons pour les ventilateurs, indicateur de distance et réglage de la vitesse.
     </td>
