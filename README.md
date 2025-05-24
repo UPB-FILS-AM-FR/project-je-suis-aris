@@ -21,8 +21,8 @@
   - [DIAGRAMME FONCTIONNEL](#diagramme-fonctionnel)
   - [SCHÉMA ÉLECTRIQUE](#schéma-électrique)
 - [COMPOSANTS](#composants)
-- [BIBLIOTHÈQUES](#bibliothèques)
 - [JOURNAL DE DÉVELOPPEMENT](#journal-de-développement)
+- [BIBLIOTHÈQUES](#bibliothèques)
 - [LIENS UTILES](#liens-utiles)
 
 ---
@@ -30,7 +30,7 @@
 ## <span style="color:gray;">DESCRIPTION</span>
 
 <p align="justify">
-Néto BOT est un robot aspirateur autonome contrôlé par un microcontrôleur ESP32. Il est conçu pour détecter les obstacles à l’aide d’un capteur à ultrasons monté sur un servomoteur, et contourner automatiquement ces obstacles en adaptant sa trajectoire. Il est équipé d’un système de ventilation assurant l’aspiration des poussières et peut être commandé soit en mode automatique, soit manuellement via une interface Wi-Fi. Tous les composants matériels - L298N, moteurs, ventilateurs, batteries - sont intégrés sur une structure mobile légère et modulaire, optimisée pour les surfaces planes intérieures.
+Néto BOT est un robot aspirateur autonome contrôlé par un microcontrôleur ESP32. Il est conçu pour détecter les obstacles à l’aide d’un capteur à ultrasons monté sur un servomoteur et contourner automatiquement ces obstacles en adaptant sa trajectoire. Il est équipé d’un système de ventilation assurant l’aspiration des poussières et peut être commandé soit en mode automatique, soit manuellement via une interface Wi-Fi. Tous les composants matériels - L298N, moteurs, ventilateurs, batteries - sont intégrés sur une structure mobile légère et modulaire, optimisée pour les surfaces planes intérieures.
 </p>
 
 ---
@@ -64,7 +64,7 @@ Le <strong>diagramme fonctionnel</strong> illustre de manière abstraite l'organ
 </p>
 
 <p align="justify">
-Le <strong>schéma électrique</strong> représente le câblage réel de l’ensemble des composants du robot, incluant les connexions entre l’ESP32, les moteurs, le module L298N, les capteurs, les alimentations et les ventilateurs. Il permet de visualiser avec précision comment les signaux et l’énergie circulent dans le circuit. Ce schéma est fondamental pour le montage physique du robot et sert de référence lors du prototypage, du dépannage ou de la reproduction du projet.
+Le <strong>schéma électrique</strong> représente le câblage réel de l’ensemble des composants du robot, incluant les connexions entre l’ESP32, les moteurs, le module L298N, les capteurs, les alimentations et les ventilateurs. Ce schéma est fondamental pour le montage physique du robot et sert de référence lors du prototypage, du dépannage ou de la reproduction du projet.
 </p>
 
 
@@ -109,13 +109,6 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
       <td align="justify">Connexion directe entre broches GPIO.</td>
     </tr>
     <tr>
-      <td align="center"><a href="https://sigmanortec.ro/Suport-Baterii-4AA-cu-Mufa-p148578749">Support pour 4 piles AA avec connecteur</a></td>
-      <td align="center">1</td>
-      <td align="center">5,34 lei</td>
-      <td align="center">5,34 lei</td>
-      <td align="justify">Support d’alimentation portable à 6V.</td>
-    </tr>
-    <tr>
       <td align="center"><a href="https://www.optimusdigital.ro/ro/fire-fire-mufate/881-set-fire-mama-mama-40p-15-cm.html?search_query=Fire+Colorate+Mama-Mama+%2840p%2C+15+cm%29+&results=10">Fils Dupont Femelle-Femelle (40p, 15 cm)</a></td>
       <td align="center">1</td>
       <td align="center">6,99 lei</td>
@@ -145,9 +138,9 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
     </tr>
     <tr>
       <td align="center"><a href="https://www.optimusdigital.ro/ro/suporturi-de-baterii/12571-suport-pentru-6-baterii-aa-fara-capac.html?search_query=Suport+pentru+6+baterii+AA+fara+capac+&results=1">Support pour 6 piles AA</a></td>
-      <td align="center">1</td>
+      <td align="center">2</td>
       <td align="center">8,98 lei</td>
-      <td align="center">8,98 lei</td>
+      <td align="center">17,96 lei</td>
       <td align="justify">Alimentation modulaire de 9V pour moteurs.</td>
     </tr>
     <tr>
@@ -166,9 +159,9 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
     </tr>
     <tr>
       <td align="center"><a href="https://altex.ro/baterii-alcaline-basic-duracell-aa-6-bucati/cpd/BATBASICAAK6/">Piles AA</a></td>
-      <td align="center">10</td>
+      <td align="center">12</td>
       <td align="center">3,60 lei</td>
-      <td align="center">36,00 lei</td>
+      <td align="center">43,20 lei</td>
       <td align="justify">Source d’énergie autonome pour modules électroniques.</td>
     </tr>
     <tr>
@@ -187,11 +180,62 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
     </tr>
     <tr>
       <td colspan="3" align="right"><strong>Total général</strong></td>
-      <td align="center"><strong>328,12 lei</strong></td>
+      <td align="center"><strong>331,58 lei</strong></td>
       <td></td>
     </tr>
   </tbody>
 </table>
+
+</div>
+
+---
+
+## <span style="color:gray;">JOURNAL DE DÉVELOPPEMENT</span>
+
+<div align="justify">
+
+#### Semaine 6 – 12 Mai
+
+<table>
+  <tr>
+    <td style="width: 45%;"><img src="faza1.jpg" alt="Phase 1" style="width:100%; border-radius:8px;"></td>
+    <td style="vertical-align:top; text-align:justify; padding-left:15px;">
+      La première étape a consisté à fixer les roues sur la plaque de base du robot. J’ai percé les trous nécessaires pour faire passer les fils des moteurs. Ensuite, j’ai connecté les moteurs aux deux pilotes de moteur L298N : un pour les roues avant et un pour les roues arrière. Chaque pilote a été relié à la carte ESP32 afin d’assurer le contrôle complet de la mobilité.
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top; text-align:justify; padding-right:15px;">
+      Dans la deuxième étape, j’ai ajouté une breadboard sur la base pour faciliter les connexions électriques. J’ai également vissé quatre longues entretoises qui serviront à soutenir un second niveau. Ce deuxième étage accueillera le système d’alimentation (piles) ainsi que le système d’aspiration.
+    </td>
+    <td style="width: 45%;"><img src="faza2.jpg" alt="Phase 2" style="width:100%; border-radius:8px;"></td>
+  </tr>
+  <tr>
+    <td style="width: 45%;"><img src="faza3.jpg" alt="Phase 3" style="width:100%; border-radius:8px;"></td>
+    <td style="vertical-align:top; text-align:justify; padding-left:15px;">
+      La troisième photo montre le montage du deuxième niveau du robot. J’y ai fixé un servomoteur sur lequel j’ai installé un capteur à ultrasons grâce à une platine spéciale en plastique. Cette configuration permet la rotation du capteur pour effectuer des balayages angulaires en mode autonome.
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top; text-align:justify; padding-right:15px;">
+      À ce stade avancé, comme on le voit sur la quatrième image, j’ai ajouté un troisième pilote L298N dédié au contrôle des deux ventilateurs. Les connexions nécessaires avec la breadboard ont été effectuées pour distribuer l’alimentation à partir de deux packs de six piles AA. En plus, une batterie externe a été fixée sous la base du robot à l’aide de ressorts, fournissant du courant à la breadboard via un régulateur 5V.
+    </td>
+    <td style="width: 45%;"><img src="faza4.jpg" alt="Phase 4" style="width:100%; border-radius:8px;"></td>
+  </tr>
+  <tr>
+    <td style="width: 45%;"><img src="faza5.jpg" alt="Phase 5" style="width:100%; border-radius:8px;"></td>
+    <td style="vertical-align:top; text-align:justify; padding-left:15px;">
+      La cinquième photo présente l’état final du robot. Le système d’aspiration imprimé en 3D a été installé : il comprend deux ventilateurs internes connectés au circuit, ainsi qu’un filtre à poussière visible sur l’image. Deux supports de batteries ont également été ajoutés, et tous les circuits ont été finalisés, avec les composants correctement branchés et fixés. Le robot est maintenant prêt à fonctionner.
+    </td>
+  </tr>
+</table>
+
+#### Semaine 13 – 19 Mai
+
+<!-- À compléter -->
+
+#### Semaine 20 – 26 Mai
+
+<!-- À compléter -->
 
 </div>
 
@@ -206,36 +250,27 @@ Le <strong>schéma électrique</strong> représente le câblage réel de l’ens
     <tr>
       <th><strong>Bibliothèque</strong></th>
       <th><strong>Description</strong></th>
-      <th><strong>Utilisation</strong></th>
+      <th><strong>Utilisation dans le projet</strong></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://github.com/espressif/arduino-esp32">ESP32 WiFi</a></td>
-      <td align="justify">Librairie officielle ESP32 pour gérer la connectivité Wi-Fi, les sockets TCP, UDP, et les serveurs HTTP.</td>
-      <td align="justify">Utilisée pour établir une connexion à un réseau local et permettre la commande du robot via interface Web embarquée.</td>
+      <td><a href="https://github.com/espressif/arduino-esp32/tree/master/libraries/WiFi">WiFi.h</a></td>
+      <td align="justify">Bibliothèque officielle ESP32 pour la gestion de la connexion sans fil (Wi-Fi), permettant de se connecter à un réseau local (WLAN).</td>
+      <td align="justify">Utilisée pour connecter le robot à un réseau Wi-Fi local, afin de permettre l’accès à l’interface de commande à distance via navigateur web.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/espressif/arduino-esp32/tree/master/libraries/WebServer">WebServer.h</a></td>
+      <td align="justify">Fournit un serveur HTTP embarqué permettant de créer des routes GET et POST pour interagir avec l’ESP32 via une page web.</td>
+      <td align="justify">Utilisée pour héberger une interface web de commande manuelle, permettant de contrôler le robot, la vitesse, les ventilateurs et de lire la distance.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/espressif/arduino-esp32/tree/master/libraries/ESP32Servo">ESP32Servo.h</a></td>
+      <td align="justify">Permet le contrôle précis de servomoteurs avec les minuteries compatibles ESP32 (PWM matériel logiciel).</td>
+      <td align="justify">Utilisée pour orienter un capteur à ultrasons monté sur un servomoteur afin de scanner l’environnement dans le mode autonome.</td>
     </tr>
   </tbody>
 </table>
-
-</div>
-
----
-
-## <span style="color:gray;">JOURNAL DE DÉVELOPPEMENT</span>
-
-<div align="justify">
-
-#### Semaine 6 – 12 Mai
-- Assemblage du châssis mobile  
-- Installation des moteurs DC et test avec L298N  
-- Implémentation du système d’alimentation à base de batteries AA
-
-#### Semaine 7 – 19 Mai
-
-
-#### Semaine 20 – 26 Mai
-
 
 </div>
 
